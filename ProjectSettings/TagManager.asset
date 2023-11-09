@@ -12,6 +12,7 @@ TagManager:
   - HydrogenBullet
   - WaterBullet
   - Enemy1
+  - FireBullet1
   layers:
   - Default
   - TransparentFX

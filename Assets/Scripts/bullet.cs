@@ -8,14 +8,14 @@ public class bullet : MonoBehaviour
 
     void Awake()
     {
-        Destroy(gameObject, life);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Enemy")) // Assuming bullets are tagged as "Fire"
         {
-            ThrowEnemy enemyHealth = collision.collider.GetComponent<ThrowEnemy>();
+            EnemyLife enemyHealth = collision.collider.GetComponent<EnemyLife>();
 
             if (enemyHealth != null)
             {

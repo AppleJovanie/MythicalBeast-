@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ThrowEnemy : MonoBehaviour
+public class EnemyLife : MonoBehaviour
 {
+    //Enemy's Life
     public float maxHealth = 100f;  // Maximum health of the enemy
     private float currentHealth;    // Current health of the enemy
     [SerializeField] FloatingHealthBar healthBar;
@@ -38,7 +39,7 @@ public class ThrowEnemy : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Die();  // If the current health falls to or below zero, call the Die function
-                SceneManager.LoadScene(1);
+                //SceneManager.LoadScene(1);
             }
         }
     }

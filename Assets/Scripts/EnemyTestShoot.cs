@@ -29,12 +29,30 @@ public class EnemyTestShoot : MonoBehaviour
         currentWeaponIndex = 0;
 
         // Start automatically shooting with the specified interval
-        InvokeRepeating("ShootBullet", 0f, shootingInterval);
+       
     }
 
-    void ShootBullet()
+    // Enemy Shooting triggered by collision
+    private async void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("FireBullet"))
+        {
+            StartCoroutine(DelayedAction());
+            
+        }
+    }
+
+    // Enemy Shooting method
+    private void ShootBullet()
     {
         var bullet = Instantiate(currentGun, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+    }
+
+    private IEnumerator DelayedAction()
+    {
+       
+        yield return new WaitForSeconds(2.0f);
+        ShootBullet();
     }
 }
