@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MovementScript : MonoBehaviour
@@ -104,7 +105,16 @@ public class MovementScript : MonoBehaviour
         {
             m_collisions.Remove(collision.collider);
         }
-        if (m_collisions.Count == 0) { m_isGrounded = false; }
+        if (m_collisions.Count == 0)
+        {
+            m_isGrounded = false;
+        }
+
+        if (tag == "Enemy1")
+        {
+            Debug.Log("Exiting collision with object tagged as 'Enemy1'");
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void Update()
@@ -227,4 +237,5 @@ public class MovementScript : MonoBehaviour
             m_animator.SetTrigger("Jump");
         }
     }
+  
 }

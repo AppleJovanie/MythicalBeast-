@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class EnemyCollider : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (tag == "Enemy")
+        if (collision.collider.CompareTag("Enemy"))
         {
             SceneManager.LoadScene(2);
         }

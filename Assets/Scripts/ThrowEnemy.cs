@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ThrowEnemy : MonoBehaviour
 {
@@ -8,27 +9,38 @@ public class ThrowEnemy : MonoBehaviour
     private float currentHealth;    // Current health of the enemy
     [SerializeField] FloatingHealthBar healthBar;
     Rigidbody rb;
+   
+
+    private float lastHitTime; // Time of the last hit
+
+    public float hitCooldown = 4.0f; // Minimum cooldown between hits
 
     private void Awake()
     {
-        rb = GetComponent <Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         healthBar = GetComponent<FloatingHealthBar>();
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
-        //healthBar.UpdateHealthBar(currentHealth, maxHealth);
+        lastHitTime = -hitCooldown; // Initialize to allow immediate hit
     }
-     
+
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        //healthBar.UpdateHealthBar(currentHealth, maxHealth);
-
-        if (currentHealth <= 0)
+       
+        if (Time.time - lastHitTime >= hitCooldown)
         {
-            Die();  // If the current health falls to or below zero, call the Die function
+            currentHealth -= damage;
+            lastHitTime = Time.time;
+
+            if (currentHealth <= 0)
+            {
+                Die();  // If the current health falls to or below zero, call the Die function
+                SceneManager.LoadScene(1);
+
+            }
         }
     }
 
@@ -42,18 +54,20 @@ public class ThrowEnemy : MonoBehaviour
     {
         if (collision.collider.CompareTag("FireBullet")) // Assuming bullets are tagged as "Fire"
         {
-            float damage = 10f; // The damage you want to apply
+            int damage = Random.Range(10, 20); 
+            TakeDamage(damage);
+            Debug.Log(damage);
+        }
+        if (collision.collider.CompareTag("WaterBullet")) // Assuming bullets are tagged as "Water"
+        {
+            int damage = Random.Range(15, 25);
             TakeDamage(damage);
         }
-        if (collision.collider.CompareTag("WaterBullet")) // Assuming bullets are tagged as "Fire"
+        if (collision.collider.CompareTag("HydrogenBullet")) // Assuming bullets are tagged as "Hydrogen"
         {
-            float damage = 20f; // The damage you want to apply
-            TakeDamage(damage);
-        }
-        if (collision.collider.CompareTag("HydrogenBullet")) // Assuming bullets are tagged as "Fire"
-        {
-            float damage = 20f; // The damage you want to apply
+            int damage = Random.Range(9, 30);
             TakeDamage(damage);
         }
     }
+    
 }
