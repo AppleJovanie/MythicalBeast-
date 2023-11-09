@@ -39,7 +39,6 @@ public class ThrowEnemy : MonoBehaviour
             {
                 Die();  // If the current health falls to or below zero, call the Die function
                 SceneManager.LoadScene(1);
-
             }
         }
     }
