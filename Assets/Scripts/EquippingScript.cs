@@ -61,4 +61,5 @@ public class EquippingScript : MonoBehaviour
             bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
         }
     }
+  
 }

@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
@@ -52,7 +54,7 @@ public class Health : MonoBehaviour
     // Detect collisions with bullets
     private void OnCollisionEnter(Collision collision)
     {
-        while(maxHealth <= 0) { 
+        
         if (collision.collider.CompareTag("FireBullet1")) // Assuming bullets are tagged as "Fire"
         {
             int damage = Random.Range(10, 20);
@@ -70,8 +72,12 @@ public class Health : MonoBehaviour
             int damage = Random.Range(9, 30);
             TakeDamage(damage);
         }
+        if(maxHealth <= 0)
+        {
+            Debug.Log("You Lose");
         }
-
+       
     }
+   
 
 }
