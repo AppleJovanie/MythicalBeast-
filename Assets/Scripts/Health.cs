@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     private float currentHealth;    // Current health of the enemy
     [SerializeField] FloatingHealthBar healthBar;
     Rigidbody rb;
+    public GameObject Panel;
 
 
     private float lastHitTime; // Time of the last hit
@@ -22,6 +23,7 @@ public class Health : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponent<FloatingHealthBar>();
+        
     }
 
     private void Start()
@@ -43,6 +45,11 @@ public class Health : MonoBehaviour
                 Die();  // If the current health falls to or below zero, call the Die function
                 Debug.Log("You won");           
             }
+
+            if (gameObject.CompareTag("FireBullet1"))
+            {
+                ShowPanel(); 
+            }
         }
     }
 
@@ -60,6 +67,7 @@ public class Health : MonoBehaviour
             int damage = Random.Range(10, 20);
             TakeDamage(damage);
              collision.collider.CompareTag("Enemy");
+            
             Debug.Log(damage);
         }
         if (collision.collider.CompareTag("WaterBullet1")) // Assuming bullets are tagged as "Water"
@@ -78,6 +86,12 @@ public class Health : MonoBehaviour
         }
        
     }
-   
+    private void ShowPanel()
+    {
+        if (Panel != null)
+        {
+            Panel.SetActive(true);
+        }
+    }
 
 }

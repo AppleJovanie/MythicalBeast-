@@ -7,10 +7,10 @@ public class animatorController : MonoBehaviour
 {
     private Animator _animator;
 
-    private void Awake()
-    {
-        _animator.GetComponent<Animator>();
-    }
+    //private void Awake()
+    //{
+    //    _animator.GetComponent<Animator>();
+    //}
     private void PlayIdle()
     {
         _animator.Play("Idle");

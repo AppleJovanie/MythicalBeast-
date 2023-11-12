@@ -13,7 +13,7 @@ public class EquippingScript : MonoBehaviour
     public float bulletSpeed = 10;
     public float shootCooldown = 4.0f; // Cooldown time in seconds
     private float lastShootTime; // Last time the player shot
-
+    public GameObject panel;
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
@@ -59,6 +59,8 @@ public class EquippingScript : MonoBehaviour
             lastShootTime = Time.time;
             var bullet = Instantiate(currentGun, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+            bool isActive = panel.activeSelf;
+            panel.SetActive(!isActive);
         }
     }
   

@@ -9,6 +9,5 @@ public class Player : MonoBehaviour
     public float baseHP;
     public float curHP;
     public float baseMP;
-
     public float stamina;
 }

@@ -12,7 +12,7 @@ public class EnemyTestShoot : MonoBehaviour
     public Transform bulletSpawnPoint;
     public float bulletSpeed = 10;
 
-    private float shootingInterval = 5.0f; // Time interval between shots
+    public float shootingInterval = 5.0f; // Time interval between shots
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class EnemyTestShoot : MonoBehaviour
     }
 
     // Enemy Shooting triggered by collision
-    private async void OnCollisionEnter(Collision collision)
+    private  void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("FireBullet"))
         {

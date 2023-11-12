@@ -13,6 +13,9 @@ TagManager:
   - WaterBullet
   - Enemy1
   - FireBullet1
+  - Water
+  - Fire
+  - Carbon
   layers:
   - Default
   - TransparentFX
